@@ -1,0 +1,70 @@
+name: Slider Full
+description: Particle que renderiza um slider na página
+type: particle
+
+form:
+  fields:
+    enabled:
+      type: input.checkbox
+      label: Enabled
+      description: Globally enable to the particles.
+      default: true
+
+    collection:
+        type: collection.list
+        array: true
+        label: Sliders
+        description: Crie cada slide usando as opções disponíveis.
+        value: title
+        ajax: true
+
+        fields:
+          .title:
+            type: input.text
+            label: Título
+
+          .description:
+            type: textarea.textarea
+            label: Descrição
+
+          .link:
+            type: input.url
+            label: Link
+
+          .image:
+            type: input.imagepicker
+            label: Imagem
+
+    css.class:
+      type: input.text
+      label: Class
+
+    transition:
+        type: select.select
+        label: Transições
+        description: Habilita se o slider adaptará a altura.
+        placeholder: 'Selecione'
+        default: horizontal
+        options:
+          horizontal: Horizontal
+          vertical: Vertical
+          fade: Fade
+          kenburns: Zoom
+
+    pager:
+      type: select.select
+      label: Usar Páginas
+      placeholder: 'Selecione'
+      default: true
+      options:
+        true: Sim
+        false: Não
+
+    controls:
+      type: select.select
+      label: Usar Controles
+      placeholder: 'Selecione'
+      default: true
+      options:
+        true: Sim
+        false: Não

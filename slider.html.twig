@@ -1,0 +1,33 @@
+{% extends '@nucleus/partials/particle.html.twig' %}
+
+{% block particle %}
+    <ul id="itensSlider" class="{{ particle.css.class }}">
+        {% for collect in particle.collection %}
+            <li>
+                <a href="{{ collect.link }}">
+                    <img src="{{ url(collect.image) }}" alt="<h4>{{ collect.title }}</h4><p>{{ collect.description }}</p>">
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    {% styles with { priority: -10 } %}
+    <link rel="stylesheet" href="{{ url('gantry-theme://assets/js/slippry/slippry.css') }}" type="text/css"/>
+    {% endstyles -%}
+
+    {% scripts in 'footer' with { priority: 10 } %}
+    <script type="text/javascript" src="{{ url('gantry-theme://assets/js/slippry/slippry.min.js') }}"></script>
+    <script type="text/javascript">
+        jQuery('#itensSlider').slippry({
+            transition: '{{ particle.transition }}',
+            pager: {{ particle.pager == 1 ? 'true' : 'false' }},
+            controls: {{ particle.controls == 1 ? 'true' : 'false' }},
+            adaptiveHeight: true, // height of the sliders adapts to current slide
+            useCSS: true, // true, false -> fallback to js if no browser support
+            autoHover: false,
+            speed: 2000
+        });
+    </script>
+    {% endscripts -%}
+
+{% endblock %}
